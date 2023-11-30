@@ -24,11 +24,11 @@ const AuthForm = ({ updateAuthText }: AuthFormProps) => {
   const [variant, setVariant] = useState<Variant>("LOGIN");
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   if (session?.status === "authenticated") {
-  //     router.push("/conversations");
-  //   }
-  // }, [session?.status, router]);
+  useEffect(() => {
+    if (session?.status === "authenticated") {
+      router.push("/users");
+    }
+  }, [session?.status, router]);
 
   const toggleVariant = useCallback(() => {
     if (variant === "LOGIN") {
@@ -70,7 +70,7 @@ const AuthForm = ({ updateAuthText }: AuthFormProps) => {
           }
 
           if (callback?.ok) {
-            // router.push("/conversations");
+            router.push("/users");
             toast.success("User Created!");
           }
         })
@@ -89,7 +89,7 @@ const AuthForm = ({ updateAuthText }: AuthFormProps) => {
           }
 
           if (callback?.ok) {
-            // router.push("/conversations");
+            router.push("/user");
             toast.error("Invalid credentials!");
           }
         })
@@ -107,7 +107,7 @@ const AuthForm = ({ updateAuthText }: AuthFormProps) => {
         }
 
         if (callback?.ok) {
-          router.push("/conversations");
+          router.push("/users");
         }
       })
       .finally(() => setIsLoading(false));
