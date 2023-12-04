@@ -85,12 +85,12 @@ const AuthForm = ({ updateAuthText }: AuthFormProps) => {
       })
         .then((callback) => {
           if (callback?.error) {
-            toast.success("Logged In!");
+            toast.error("Invalid credentials!");
           }
 
           if (callback?.ok) {
             router.push("/user");
-            toast.error("Invalid credentials!");
+            toast.success("Logged In!");
           }
         })
         .finally(() => setIsLoading(false));

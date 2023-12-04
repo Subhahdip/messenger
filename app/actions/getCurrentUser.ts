@@ -5,15 +5,15 @@ const getCurrentUser = async () => {
   try {
     const session = await getSession();
 
-    console.log('Session image is ' + session?.user?.image);
+    console.log('Session email is ' + session?.user?.email);
 
-    if (!session?.user?.image) {
+    if (!session?.user?.email) {
       return null;
     }
 
     const currentUser = await prisma.user.findFirst({
       where: {
-        image: session.user.image as string
+        email: session.user.email as string
       }
     });
 
